@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './layouts/Header';
 import Home from './pages/Home';
 import AboutPage from './pages/AboutPage';
-import Picture from './pages/Picture';
+import Movie from './pages/Movie';
 import Actor from './pages/Actor';
 import ActorSup from './pages/ActorSup';
 import Actress from './pages/Actress';
@@ -39,7 +39,7 @@ function App() {
         <CategoryLinks />
         <div className='container'>
           <Routes>
-            <Route exact path='/movies' element={<Picture />} />
+            <Route exact path='/movies' element={<Movie />} />
           </Routes>
           <Routes>
             <Route path='/actor' element={<Actor />} />
