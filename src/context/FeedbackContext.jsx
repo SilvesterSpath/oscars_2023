@@ -304,6 +304,25 @@ export const FeedbackProvider = ({ children }) => {
         ];
   });
 
+  const [scores, setScores] = useState(() => {
+    const storedscores = localStorage.getItem('scores');
+    console.log('storedScores', storedscores);
+    return storedscores
+      ? JSON.parse(storedscores)
+      : [
+          {
+            id: 1,
+            name: 'Szilveszter',
+            score: 0,
+          },
+          {
+            id: 2,
+            name: 'Szilvi',
+            score: 0,
+          },
+        ];
+  });
+
   useEffect(() => {
     // Save state variables to localStorage every time they change
     localStorage.setItem('movies', JSON.stringify(movies));
@@ -329,6 +348,7 @@ export const FeedbackProvider = ({ children }) => {
     localStorage.setItem('adapted', JSON.stringify(adapted));
     localStorage.setItem('original', JSON.stringify(original));
     localStorage.setItem('song', JSON.stringify(song));
+    localStorage.setItem('scores', JSON.stringify(scores));
   }, [
     movies,
     actors,
@@ -353,6 +373,7 @@ export const FeedbackProvider = ({ children }) => {
     adapted,
     original,
     song,
+    scores,
   ]);
 
   const [feedbackEditState, setFeedbackEditState] = useState({
@@ -438,6 +459,12 @@ export const FeedbackProvider = ({ children }) => {
     if (type === 'effects') setEffects([...effects, newFeedback]);
     if (type === 'adapted') setAdapted([...adapted, newFeedback]);
     if (type === 'original') setOriginal([...original, newFeedback]);
+    if (type === 'scores') {
+      scores.find((item) => item.name === newFeedback.name).score =
+        newFeedback.score;
+      console.log('scores', scores);
+      setScores([...scores]);
+    }
   };
 
   // Update feedback item
@@ -475,6 +502,7 @@ export const FeedbackProvider = ({ children }) => {
         effects,
         adapted,
         original,
+        scores,
         deleteItem,
         addItem,
         editFeedback,

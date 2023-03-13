@@ -3,7 +3,7 @@ import PanelScoreboard from './PanelScoreboard';
 import './score.css';
 
 function ScoreBoard() {
-  const teams = [['Szilvi'], ['Szilveszter']];
+  const teams = ['Szilvi', 'Szilveszter'];
 
   return (
     <div className='score_container'>
